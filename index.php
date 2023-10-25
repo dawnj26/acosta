@@ -31,13 +31,15 @@ if (isset($_POST['compose'])) {
         require "config.php";
 
         if (isset($_POST['delete'])) {
-            $items = $_POST['item'];
-            foreach ($items as $i) {
-                $query1 = "DELETE FROM email WHERE id=$i";
-                $conn->query($query1);
+            if (isset($_POST['item'])) {
+                $items = $_POST['item'];
+                foreach ($items as $i) {
+                    $query1 = "DELETE FROM email WHERE id=$i";
+                    $conn->query($query1);
+                }
             }
         }
-        
+
         $query = "SELECT * FROM email";
 
         $result = $conn->query($query);
